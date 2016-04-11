@@ -1,0 +1,115 @@
+html { 
+    width:100%;
+    height:100%;
+}
+
+body {
+    width:100%;
+    height:100%;
+    background-color: #000;
+    margin: 0;
+    overflow:hidden;
+}
+
+#app {
+    font-size: xx-large;
+    color: #DD0000;
+    max-width: 800px;
+    margin:auto;
+}
+
+.container {
+    border-color: #DD0000;
+    border-style: dashed;
+    border-width: 1px;
+    position: absolute;
+    display: block;
+    left:0px;
+    margin: 5px;
+}
+
+.title {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: red;
+}
+
+.footer {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    background-color: yellow;
+}
+
+.button {
+    display: inline-block;
+    height: 100px;
+    text-align: center;
+}
+
+.previous {
+    width: 25%;
+}
+
+.next {
+    width: 75%;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+/* Animations */
+
+.slideIn {
+    animation-duration: 1s;
+    animation-name: slideIn;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.slideOut {
+    animation-duration: 1s;
+    animation-name: slideOut;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.reverse {
+    animation-direction: reverse;
+}
+
+@keyframes slideOut {
+    0% {
+        left: 0;
+    }
+    
+    100% {
+        left: -1800px;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        left: 1800px;
+    }
+    
+    100% {
+        left: 0px;
+    }
+}

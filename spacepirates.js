@@ -18,11 +18,14 @@ var spacepirates = {
         if (!this.containerWidth) {
             var bodyStyle = window.getComputedStyle(document.body);
             var currentWidth = parseInt(bodyStyle.width); // removes the "px" at the end
+            var currentHeight = parseInt(bodyStyle.height); // removes the "px" at the end
             this.containerWidth = Math.min(800, currentWidth);
+            this.containerHeight = currentHeight - (5 + 1) * 2; // margin and border
             this.containerMargeLeft = Math.max(0, (currentWidth - this.containerWidth) / 2);
         }
         
         container.style.width = this.containerWidth + 'px';
+        container.style.height = this.containerHeight + 'px';
         container.style.marginLeft = this.containerMargeLeft + 'px';
         div.appendChild(container);
         

@@ -10,7 +10,9 @@ var cards = [
         getHtml: function() {
             var html = 'Space pirates is a story game you can play with your friends in 15 - 45 minutes.<br />';
             html += 'Take a pen and some sheets of paper, follow this simple rules and have fun!<br />';
-            html += 'No loot, no problem';
+            html += 'No loot, no problem<br/>';
+            html += 'And here we have<br/>'
+            html+= 'more lines<br/>'
             return html;
         },
         

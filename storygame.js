@@ -54,8 +54,11 @@ var storygame = {
         if (title) {
             var self = this;
             document.body.onclick = function(e) {
-                self.clickGoNext(div, container);
-                document.body.onclick = null;
+                if (!self.animated) {
+                    document.body.onclick = null;
+                    self.clickGoNext(div, container);   
+                }
+                
                 self.noBubble(e);
             }
         }
@@ -64,22 +67,32 @@ var storygame = {
     },
     
     clickGoNext: function(div, container) {
-        container.className = 'container slideOut';
-        container.addEventListener('animationend', function(e) {
-            div.removeChild(container);
-        });
-        
-        this.goNext(div);
+        if (!this.animated) {
+            var self = this;
+            this.animated = true;
+            container.className = 'container slideOut';
+            container.addEventListener('animationend', function(e) {
+                div.removeChild(container);
+                self.animated = false;
+            });
+            
+            this.goNext(div);   
+        }
     },
     
     clickGoPrevious: function(div, container) {
-        if (this.currentCard > 0) {
-            container.className = 'container slideOutPrevious';
-            container.addEventListener('animationend', function(e) {
-                div.removeChild(container); 
-            });
-            
-            this.goPrevious(div, container);
+        if (!this.animated) {
+            var self = this;
+            this.animated = true;
+            if (this.currentCard > 0) {
+                container.className = 'container slideOutPrevious';
+                container.addEventListener('animationend', function(e) {
+                    div.removeChild(container);
+                    self.animated = false;
+                });
+                
+                this.goPrevious(div, container);
+            }
         }
     },
     
@@ -140,7 +153,7 @@ var storygame = {
         
         var divPrevious = document.createElement('div');
         divPrevious.innerHTML = '<=';
-        divPrevious.className = 'button previous';
+        divPrevious.className = 'button previous noselect';
         footer.appendChild(divPrevious);
         
         divPrevious.onclick = function(e) {
@@ -150,7 +163,7 @@ var storygame = {
         
         var divNext = document.createElement('div');
         divNext.innerHTML = '=>';
-        divNext.className = 'button next';
+        divNext.className = 'button next noselect';
         footer.appendChild(divNext);
         
         divNext.onclick = function(e) {

@@ -1,67 +1,15 @@
-function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
-
-var spacepirates = {
-    run: function() {
-        var mainDiv = document.getElementById('app');
-        this.showTitle(mainDiv)
+var cards = [
+    function() {
+        return '<div class="title">Space pirates</div><div class="title">All aboard!</div>';
     },
-    
-    createContainer: function(div, next) {
-        var container = document.createElement('div');
-        container.className = 'container slideIn';
-        if (!this.containerWidth) {
-            var bodyStyle = window.getComputedStyle(document.body);
-            var currentWidth = parseInt(bodyStyle.width); // removes the "px" at the end
-            var currentHeight = parseInt(bodyStyle.height); // removes the "px" at the end
-            this.containerWidth = Math.min(800, currentWidth);
-            this.containerHeight = currentHeight - (5 + 1) * 2; // margin and border
-            this.containerMargeLeft = Math.max(0, (currentWidth - this.containerWidth) / 2);
-        }
-        
-        container.style.width = this.containerWidth + 'px';
-        container.style.height = this.containerHeight + 'px';
-        container.style.marginLeft = this.containerMargeLeft + 'px';
-        div.appendChild(container);
-        
-        if (next) {
-            var self = this;
-            document.body.onclick = function() {
-                container.className += ' slideOut';
-                container.addEventListener('animationend', function(e) {
-                    div.removeChild(container); 
-                });
-                
-                self.showCard(div, next);
-            }
-        }
-        
-        return container;
+    function() {
+        var html = 'Space pirates is a story game you can play with your friends in 15 - 45 minutes.<br />';
+        html += 'Take a pen and some sheets of paper, follow this simple rules and have fun!<br />';
+        html += 'No loot, no problem';
+        return html;
     },
-    
-    showTitle: function(div) {
-        var container = this.createContainer(div, 'intro');
-        var titleDiv = document.createElement('div');
-        titleDiv.innerHTML = 'Space pirates';
-        titleDiv.className = 'title';
-        container.appendChild(titleDiv);
-        var subTitleDiv = document.createElement('div');
-        subTitleDiv.innerHTML = "All aboard!";
-        subTitleDiv.className = 'title';
-        container.appendChild(subTitleDiv);
-    },
-    
-    showCard: function(div, cardName) {
-        var container = this.createContainer(div);
-        container.innerHTML = 'hoho';
+    function() {
+        var html = 'card3';
+        return html;
     }
-};
-
-ready(function() {
-   spacepirates.run(); 
-});
+];

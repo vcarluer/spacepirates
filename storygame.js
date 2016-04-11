@@ -122,30 +122,37 @@ var storygame = {
     
     showCard: function(div) {
         var container = this.createContainer(div, this.currentCard == 0);
+        var card = cards[this.currentCard];
         if (this.currentCard > 0) {
-            this.createHeader(container);    
+            this.createHeader(card, container);    
         }
         
-        this.createBody(container);
+        this.createBody(card, container);
         
         if (this.currentCard > 0) {
-            this.createFooter(div, container);   
+            this.createFooter(card, div, container);   
         }
     },
     
-    createHeader: function(container) {
+    createHeader: function(card, container) {
         var header = document.createElement('div');
         header.className = 'header';
         container.appendChild(header);
+        
+        if (gameTitle) {
+            header.innerHTML = gameTitle;
+        }
     },
     
-    createBody: function(container) {
-        var html = cards[this.currentCard]();
-        var body = this.divBody(html);
-        container.appendChild(body);
+    createBody: function(card, container) {
+        if (card.getHtml) {
+            var html = card.getHtml();
+            var body = this.divBody(html);
+            container.appendChild(body);
+        }
     },
     
-    createFooter: function(div, container) {
+    createFooter: function(card, div, container) {
         var self = this;
         var footer = document.createElement('div');
         footer.className = 'footer';
@@ -162,7 +169,15 @@ var storygame = {
         }
         
         var divNext = document.createElement('div');
-        divNext.innerHTML = '=>';
+        if (this.currentCard === cards.length - 1 ) {
+            divNext.innerHTML = 'RESTART';
+        } else {
+            divNext.innerHTML = '=>';
+            if (card.getNext) {
+                divNext.innerHTML += ' ' + card.getNext();
+            }    
+        }
+        
         divNext.className = 'button next noselect';
         footer.appendChild(divNext);
         

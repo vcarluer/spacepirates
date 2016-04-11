@@ -58,6 +58,7 @@ body {
 
 .previous {
     width: 25%;
+    background-color: blue;
 }
 
 .next {
@@ -90,13 +91,24 @@ body {
     animation-fill-mode: forwards;
 }
 
-.reverse {
-    animation-direction: reverse;
+
+.slideInPrevious {
+    animation-duration: 1s;
+    animation-name: slideInPrevious;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.slideOutPrevious {
+    animation-duration: 1s;
+    animation-name: slideOutPrevious;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
 @keyframes slideOut {
     0% {
-        left: 0;
+        left: 0px;
     }
     
     100% {
@@ -111,5 +123,25 @@ body {
     
     100% {
         left: 0px;
+    }
+}
+
+@keyframes slideInPrevious {
+    0% {
+        left: -1800px;
+    }
+    
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes slideOutPrevious {
+    0% {
+        left: 0px;
+    }
+    
+    100% {
+        left: 1800px;
     }
 }

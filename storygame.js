@@ -32,7 +32,7 @@ var storygame = {
         var container = document.createElement('div');
         
         if (this.direction === 'previous') {
-            container.className = 'container slideOut reverse';
+            container.className = 'container slideInPrevious';
         } else {
             container.className = 'container slideIn';
         }
@@ -74,7 +74,7 @@ var storygame = {
     
     clickGoPrevious: function(div, container) {
         if (this.currentCard > 0) {
-            container.className = 'container slideIn reverse';
+            container.className = 'container slideOutPrevious';
             container.addEventListener('animationend', function(e) {
                 div.removeChild(container); 
             });
